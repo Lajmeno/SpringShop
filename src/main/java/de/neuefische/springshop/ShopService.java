@@ -1,8 +1,11 @@
 package de.neuefische.springshop;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ShopService {
 
     ProductRepo productRepo;
@@ -26,7 +29,7 @@ public class ShopService {
         return orderRepo.toString();
     }
 
-    public void addOrder(int orderId, int[] productIds) throws Exception {
+    public void addOrder(int orderId, int[] productIds){
         Order newOrder = new Order(orderId);
         int counter = productIds.length;
         for (Product product : productRepo.getProducts()){
@@ -40,7 +43,7 @@ public class ShopService {
         if(counter == 0) {
             orderRepo.getOrders().add(newOrder);
         }else{
-            throw new Exception("Order can't be completed: One or more product-ids don't exist!");
+            throw new RuntimeException("Order can't be completed: One or more product-ids don't exist!");
         }
     }
 
