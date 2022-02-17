@@ -32,8 +32,6 @@ class ShopServiceTest {
         products.add(product1);
         products.add(product2);
         assertEquals(Optional.of(products), newShop.getOrder(1));
-
-
     }
 
     @Test
